@@ -14,9 +14,9 @@ namespace BLL
         public string Nombres { get; set; }
         public string Sexo { get; set; }
         ConexionDb conexion = new ConexionDb();
-
+        
         public List<PersonasTelefonos> telefono { get; set; }
-
+       
         public Personas(int personaId, string nombres, string sexo)
         {
             this.PersonaId = personaId;
@@ -38,11 +38,6 @@ namespace BLL
         public void AgregarTelefono(int PersonaId, string TipoTelefono, string Telefono)
         {
             this.telefono.Add(new PersonasTelefonos(PersonaId, TipoTelefono, Telefono));
-        }
-
-        public void AgregarTelefono(string TipoTelefono, string Telefono)
-        {
-            this.telefono.Add(new PersonasTelefonos(TipoTelefono, Telefono));
         }
 
         public override bool Insertar()

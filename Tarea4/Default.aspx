@@ -14,16 +14,9 @@
         .auto-style5 {
             margin-left: 439px;
         }
-        .auto-style6 {
-            margin-left: 6px;
-            margin-top: 0;
-        }
-        .auto-style7 {
-            margin-left: 0px;
-        }
-        .auto-style8 {
-            margin-left: 4px;
-        }
+    .auto-style8 {
+        margin-left: 4px;
+    }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,10 +36,6 @@
         </tr>
         <tr>
             <td>
-                <asp:Label ID="Label4" runat="server" Text="Telefono"></asp:Label>
-                <asp:TextBox ID="Telefonotxt" runat="server" CssClass="auto-style7" Width="112px"></asp:TextBox>
-                <asp:Label ID="Label5" runat="server" Text="Tipo de telefono"></asp:Label>
-                <asp:TextBox ID="TipoTelefonotxt" runat="server"></asp:TextBox>
                 <asp:Button ID="Agregarbtn" class="btn btn-primary" runat="server" Text="Agregar" OnClick="Agregarbtn_Click" />
             </td>
             <td>&nbsp;</td>
@@ -54,8 +43,34 @@
         </tr>
         <tr>
             <td>
-                <asp:ListBox ID="TelefonoLb" runat="server" Width="170px" OnSelectedIndexChanged="TelefonoLb_SelectedIndexChanged" CssClass="auto-style6" Height="68px"></asp:ListBox>
                 <asp:Button ID="BorrarBtn"  runat="server" Text="Borrar" OnClick="BorrarBtn_Click" CssClass="auto-style4 btn btn-primary" Height="35px" style="margin-top: 0px" Width="70px" />
+                <asp:GridView ID="TelefonoGv" runat="server" AutoGenerateColumns="False" OnRowCommand="TelefonoGv_RowCommand" OnSelectedIndexChanged="TelefonoGv_SelectedIndexChanged" ShowFooter="True">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Telefono" SortExpression="Telefono">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Telefono") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox ID="Telefonotxt" runat="server"></asp:TextBox>
+                            </FooterTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="TipoTelefono" SortExpression="TipoTelefono">
+                            <EditItemTemplate>
+                                <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TipoTelefono") %>'></asp:TextBox>
+                            </EditItemTemplate>
+                            <FooterTemplate>
+                                <asp:TextBox ID="TipoTelefonotxt" runat="server"></asp:TextBox>
+                                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="AddNew">Add</asp:LinkButton>
+                            </FooterTemplate>
+                            <ItemTemplate>
+                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("TipoTelefono") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -74,7 +89,7 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="107px" CssClass="auto-style5 btn btn-primary" style="margin-left: 471px" />
+<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 801px" />
             </td>
             <td>&nbsp;</td>
         </tr>

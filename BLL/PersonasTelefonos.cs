@@ -27,13 +27,6 @@ namespace BLL
             this.Telefono = telefono;
         }
 
-        public PersonasTelefonos( string tipoTelefono, string telefono)
-        {
-            
-            this.TipoTelefono = tipoTelefono;
-            this.Telefono = telefono;
-        }
-
         public PersonasTelefonos()
         {
 
