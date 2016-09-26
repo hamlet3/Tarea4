@@ -48,30 +48,13 @@ namespace Tarea4
 
         }
 
-        protected void Agregarbtn_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void TelefonoLb_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void BorrarBtn_Click(object sender, EventArgs e)
-        {
-           
-        }
 
         protected void Nombretxt_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+       
 
         protected void TelefonoGv_SelectedIndexChanged(object sender, EventArgs e)
         {

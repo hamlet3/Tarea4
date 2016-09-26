@@ -8,9 +8,6 @@
         .auto-style2 {
             height: 20px;
         }
-        .auto-style4 {
-            margin-top: 12;
-        }
         .auto-style5 {
             margin-left: 439px;
         }
@@ -25,7 +22,7 @@
             <td>
                 <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
                 <asp:TextBox ID="Nombretxt" runat="server" CssClass="auto-style8" OnTextChanged="Nombretxt_TextChanged" Width="109px"></asp:TextBox>
-                <asp:Label ID="Sexo" runat="server" Text="Label"></asp:Label>
+                <asp:Label ID="Sexo" runat="server" Text="Sexo"></asp:Label>
                 <asp:DropDownList ID="SexoDDw" runat="server">
                     <asp:ListItem>Male</asp:ListItem>
                     <asp:ListItem>Female</asp:ListItem>
@@ -36,14 +33,12 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="Agregarbtn" class="btn btn-primary" runat="server" Text="Agregar" OnClick="Agregarbtn_Click" />
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td>
-                <asp:Button ID="BorrarBtn"  runat="server" Text="Borrar" OnClick="BorrarBtn_Click" CssClass="auto-style4 btn btn-primary" Height="35px" style="margin-top: 0px" Width="70px" />
                 <asp:GridView ID="TelefonoGv" runat="server" AutoGenerateColumns="False" OnRowCommand="TelefonoGv_RowCommand" OnSelectedIndexChanged="TelefonoGv_SelectedIndexChanged" ShowFooter="True">
                     <Columns>
                         <asp:TemplateField HeaderText="Telefono" SortExpression="Telefono">
@@ -89,13 +84,14 @@
         <tr>
             <td>&nbsp;</td>
             <td>
-<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 801px" />
-            </td>
+                &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="auto-style2"></td>
-            <td class="auto-style2"></td>
+            <td class="auto-style2">
+<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 292px" />
+            </td>
             <td class="auto-style2"></td>
         </tr>
         <tr>
