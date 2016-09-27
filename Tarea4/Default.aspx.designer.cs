@@ -49,6 +49,24 @@ namespace Tarea4 {
         protected global::System.Web.UI.WebControls.DropDownList SexoDDw;
         
         /// <summary>
+        /// PersonaIdtxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PersonaIdtxt;
+        
+        /// <summary>
+        /// BuscarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BuscarBtn;
+        
+        /// <summary>
         /// TelefonoGv control.
         /// </summary>
         /// <remarks>
@@ -65,5 +83,14 @@ namespace Tarea4 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button InsertarBtn;
+        
+        /// <summary>
+        /// EliminarBtn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EliminarBtn;
     }
 }

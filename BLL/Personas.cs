@@ -35,9 +35,9 @@ namespace BLL
             telefono = new List<PersonasTelefonos>();
         }
 
-        public void AgregarTelefono(int PersonaId, string TipoTelefono, string Telefono)
+        public void AgregarTelefono(int PersonaId, string Telefono, string TipoTelefono)
         {
-            this.telefono.Add(new PersonasTelefonos(PersonaId, TipoTelefono, Telefono));
+            this.telefono.Add(new PersonasTelefonos(PersonaId, Telefono, TipoTelefono));
         }
 
         public override bool Insertar()
@@ -72,8 +72,8 @@ namespace BLL
         {
             bool retorno = false;
             try
-            {
-                retorno = conexion.Ejecutar(String.Format("Update Personas ser Nombres='{0}', Sexo='{1}' where PersonaId={2}", this.Nombres, this.Sexo, this.PersonaId));
+            {                                              
+                retorno = conexion.Ejecutar(String.Format("Update Personas set Nombre='{0}', Sexo='{1}' where PersonaId={2}", this.Nombres, this.Sexo, this.PersonaId));
                 if (retorno)
                 {
                     conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId));
@@ -92,9 +92,13 @@ namespace BLL
             bool retorno = false;
             try
             {
-                retorno = conexion.Ejecutar(String.Format("Delete from Personas where ClienteId={0}", this.PersonaId));
+                conexion.Ejecutar(String.Format(" ALTER TABLE PersonasTelefonos NOCHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
+                retorno = conexion.Ejecutar(String.Format("Delete from Personas where PersonaId={0}", this.PersonaId));
                 if (retorno)
+
+                    
                     conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId));
+                conexion.Ejecutar(String.Format("ALTER TABLE PersonasTelefonos CHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
             }
             catch (Exception ex) { throw ex; }
             return retorno;
@@ -109,7 +113,7 @@ namespace BLL
             if (dt.Rows.Count > 0)
             {
                 this.PersonaId = (int)dt.Rows[0]["PersonaId"];
-                this.Nombres = dt.Rows[0]["Nombres"].ToString();
+                this.Nombres = dt.Rows[0]["Nombre"].ToString();
                 this.Sexo = dt.Rows[0]["Sexo"].ToString();
 
                 dtTelefonos = conexion.ObtenerDatos(String.Format("Select * from PersonasTelefonos WHERE PersonaId=" + IdBuscado));

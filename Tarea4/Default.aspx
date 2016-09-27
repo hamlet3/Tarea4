@@ -14,6 +14,13 @@
     .auto-style8 {
         margin-left: 4px;
     }
+        .auto-style9 {
+            margin-left: 23px;
+            margin-bottom: 0;
+        }
+        .auto-style10 {
+            margin-left: 111;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,10 +30,13 @@
                 <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
                 <asp:TextBox ID="Nombretxt" runat="server" CssClass="auto-style8" OnTextChanged="Nombretxt_TextChanged" Width="109px"></asp:TextBox>
                 <asp:Label ID="Sexo" runat="server" Text="Sexo"></asp:Label>
-                <asp:DropDownList ID="SexoDDw" runat="server">
+                <asp:DropDownList ID="SexoDDw" runat="server" OnSelectedIndexChanged="SexoDDw_SelectedIndexChanged">
+                    <asp:ListItem>Seleccionar . . . . .</asp:ListItem>
                     <asp:ListItem>Male</asp:ListItem>
                     <asp:ListItem>Female</asp:ListItem>
                 </asp:DropDownList>
+                <asp:TextBox ID="PersonaIdtxt" runat="server" CssClass="auto-style9" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                <asp:Button ID="BuscarBtn" CssClass="btn btn-info" runat="server" OnClick="BuscarBtn_Click" Text="Buscar" />
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -57,7 +67,13 @@
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TipoTelefono") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:TextBox ID="TipoTelefonotxt" runat="server"></asp:TextBox>
+                                <asp:DropDownList ID="TipoTelefonoDDL" runat="server">
+                                    <asp:ListItem>Seleccionar. . . .</asp:ListItem>
+                                    <asp:ListItem>Celular personal</asp:ListItem>
+                                    <asp:ListItem>Celular de trabajo</asp:ListItem>
+                                    <asp:ListItem>Telefono de casa</asp:ListItem>
+                                    <asp:ListItem>Telefono de trabajo</asp:ListItem>
+                                </asp:DropDownList>
                                 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="AddNew">Add</asp:LinkButton>
                             </FooterTemplate>
                             <ItemTemplate>
@@ -90,13 +106,15 @@
         <tr>
             <td class="auto-style2"></td>
             <td class="auto-style2">
-<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 292px" />
-            </td>
+                &nbsp;</td>
             <td class="auto-style2"></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td>
+<asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 270px" />
+                <asp:Button ID="EliminarBtn" runat="server" CssClass="auto-style10 btn btn-danger" Height="39px" Text="Eliminar" Width="94px" OnClick="EliminarBtn_Click" />
+            </td>
             <td>&nbsp;</td>
         </tr>
     </table>
