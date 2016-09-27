@@ -95,8 +95,7 @@ namespace BLL
                 conexion.Ejecutar(String.Format(" ALTER TABLE PersonasTelefonos NOCHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
                 retorno = conexion.Ejecutar(String.Format("Delete from Personas where PersonaId={0}", this.PersonaId));
                 if (retorno)
-
-                    
+     
                     conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId));
                 conexion.Ejecutar(String.Format("ALTER TABLE PersonasTelefonos CHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
             }
