@@ -21,6 +21,13 @@
         .auto-style10 {
             margin-left: 111;
         }
+        .auto-style11 {
+            width: 42px;
+        }
+        .auto-style12 {
+            height: 20px;
+            width: 42px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -43,21 +50,12 @@
         </tr>
         <tr>
             <td>
-                &nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>
                 <asp:GridView ID="TelefonoGv" runat="server" AutoGenerateColumns="False" OnRowCommand="TelefonoGv_RowCommand" OnSelectedIndexChanged="TelefonoGv_SelectedIndexChanged" ShowFooter="True">
                     <Columns>
                         <asp:TemplateField HeaderText="Telefono" SortExpression="Telefono">
                             <EditItemTemplate>
                                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Telefono") %>'></asp:TextBox>
                             </EditItemTemplate>
-                            <FooterTemplate>
-                                <asp:TextBox ID="Telefonotxt" runat="server"></asp:TextBox>
-                            </FooterTemplate>
                             <ItemTemplate>
                                 <asp:Label ID="Label1" runat="server" Text='<%# Bind("Telefono") %>'></asp:Label>
                             </ItemTemplate>
@@ -67,13 +65,6 @@
                                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("TipoTelefono") %>'></asp:TextBox>
                             </EditItemTemplate>
                             <FooterTemplate>
-                                <asp:DropDownList ID="TipoTelefonoDDL" runat="server">
-                                    <asp:ListItem>Seleccionar. . . .</asp:ListItem>
-                                    <asp:ListItem>Celular personal</asp:ListItem>
-                                    <asp:ListItem>Celular de trabajo</asp:ListItem>
-                                    <asp:ListItem>Telefono de casa</asp:ListItem>
-                                    <asp:ListItem>Telefono de trabajo</asp:ListItem>
-                                </asp:DropDownList>
                                 <asp:LinkButton ID="LinkButton1" runat="server" CommandName="AddNew">Add</asp:LinkButton>
                             </FooterTemplate>
                             <ItemTemplate>
@@ -82,6 +73,21 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                <asp:LinkButton ID="LinkButton2" runat="server" CommandName="asd" OnClick="LinkButton2_Click">LinkButton</asp:LinkButton>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <asp:TextBox ID="Telefonotxt" runat="server"></asp:TextBox>
+                <asp:DropDownList ID="TipoTelefonoDDL" runat="server">
+                    <asp:ListItem>Seleccionar. . . .</asp:ListItem>
+                    <asp:ListItem>Celular personal</asp:ListItem>
+                    <asp:ListItem>Celular de trabajo</asp:ListItem>
+                    <asp:ListItem>Telefono de casa</asp:ListItem>
+                    <asp:ListItem>Telefono de trabajo</asp:ListItem>
+                </asp:DropDownList>
             </td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
@@ -98,19 +104,19 @@
     </html>
     <table style="width:100%;">
         <tr>
-            <td>&nbsp;</td>
+            <td class="auto-style11">&nbsp;</td>
             <td>
                 &nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="auto-style2"></td>
+            <td class="auto-style12"></td>
             <td class="auto-style2">
                 &nbsp;</td>
             <td class="auto-style2"></td>
         </tr>
         <tr>
-            <td>&nbsp;</td>
+            <td class="auto-style11">&nbsp;</td>
             <td>
 <asp:Button ID="InsertarBtn" runat="server" Height="39px" OnClick="Button1_Click" Text="Insertar" Width="83px" CssClass="auto-style5 btn btn-primary" style="margin-left: 270px" />
                 <asp:Button ID="EliminarBtn" runat="server" CssClass="auto-style10 btn btn-danger" Height="39px" Text="Eliminar" Width="94px" OnClick="EliminarBtn_Click" />

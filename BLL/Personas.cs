@@ -35,9 +35,9 @@ namespace BLL
             telefono = new List<PersonasTelefonos>();
         }
 
-        public void AgregarTelefono(int PersonaId, string Telefono, string TipoTelefono)
+        public void AgregarTelefono(string Telefono, string TipoTelefono)
         {
-            this.telefono.Add(new PersonasTelefonos(PersonaId, Telefono, TipoTelefono));
+            this.telefono.Add(new PersonasTelefonos( Telefono, TipoTelefono));
         }
 
         public override bool Insertar()
@@ -53,13 +53,12 @@ namespace BLL
                 int.TryParse(identity.ToString(), out retorno);
 
                
-                if (retorno > 0)
-                {
+                
                     foreach (PersonasTelefonos numeros in this.telefono)
                     {
                         conexion.Ejecutar(String.Format("Insert into PersonasTelefonos (PersonaId, TipoTelefono, Telefono) Values ({0},'{1}','{2}')", retorno, numeros.TipoTelefono, numeros.Telefono));
                     }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -79,7 +78,7 @@ namespace BLL
                     conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId));
                     foreach (PersonasTelefonos numeros in this.telefono)
                     {
-                        conexion.Ejecutar(String.Format("Insert into PersonasTelefonos (PersonaId, TipoTelefono, Telefono) Values ({0},'{1}','{2}')", retorno, numeros.TipoTelefono, numeros.Telefono));
+                        conexion.Ejecutar(String.Format("Insert into PersonasTelefonos (PersonaId, TipoTelefono, Telefono) Values ({0},'{1}','{2}')", PersonaId, numeros.TipoTelefono, numeros.Telefono));
                     }
                 }
             }
@@ -92,12 +91,12 @@ namespace BLL
             bool retorno = false;
             try
             {
-                conexion.Ejecutar(String.Format(" ALTER TABLE PersonasTelefonos NOCHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
-                retorno = conexion.Ejecutar(String.Format("Delete from Personas where PersonaId={0}", this.PersonaId));
-                if (retorno)
+
+              
+
+                retorno = conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId + ";"+"Delete from Personas where PersonaId="+ this.PersonaId));
+                
      
-                    conexion.Ejecutar(String.Format("Delete from PersonasTelefonos where PersonaId={0}", this.PersonaId));
-                conexion.Ejecutar(String.Format("ALTER TABLE PersonasTelefonos CHECK CONSTRAINT FK_PersonasTelefonos_PersonaId"));
             }
             catch (Exception ex) { throw ex; }
             return retorno;
@@ -119,7 +118,7 @@ namespace BLL
 
                 foreach (DataRow row in dtTelefonos.Rows)
                 {
-                    this.AgregarTelefono((int)dtTelefonos.Rows[0]["PersonaId"], row["TipoTelefono"].ToString(), row["Telefono"].ToString());
+                    this.AgregarTelefono(row["Telefono"].ToString(), row["TipoTelefono"].ToString());
                 }
             }
             return dt.Rows.Count > 0;

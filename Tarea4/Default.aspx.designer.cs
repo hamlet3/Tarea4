@@ -76,6 +76,33 @@ namespace Tarea4 {
         protected global::System.Web.UI.WebControls.GridView TelefonoGv;
         
         /// <summary>
+        /// LinkButton2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        
+        /// <summary>
+        /// Telefonotxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Telefonotxt;
+        
+        /// <summary>
+        /// TipoTelefonoDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TipoTelefonoDDL;
+        
+        /// <summary>
         /// InsertarBtn control.
         /// </summary>
         /// <remarks>

@@ -10,7 +10,8 @@ namespace Tarea4
 {
     public partial class Default : System.Web.UI.Page
     {
-        public Personas persona = new Personas();
+        
+      
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -39,24 +40,25 @@ namespace Tarea4
             ((TextBox)PersonaIdtxt).Text = string.Empty;
             SexoDDw.SelectedIndex = 0;
             TelefonoGv.DataSource = null;
-           
+            TipoTelefonoDDL.SelectedIndex = 0;
+            ((TextBox)Telefonotxt).Text = string.Empty;
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (PersonaIdtxt.Text=="")
             {
+                Personas persona;
+                if (Session["persona"] == null)
+                    Session["persona"] = new Personas();
+                persona = (Personas)Session["persona"];
 
                 persona.Nombres = Nombretxt.Text;
                 persona.Sexo = SexoDDw.Text;
 
 
-                foreach (GridViewRow row in TelefonoGv.Rows)
-                {
-                    persona.AgregarTelefono(1, row.Cells[0].Text, row.Cells[1].Text);
-
-                }
-
+              
                 if (persona.Insertar())
                 {
                     Response.Write("<script>alert('Insertado Correctamente')</script>");
@@ -66,6 +68,12 @@ namespace Tarea4
             }
             else
             {
+                Personas persona;
+                if (Session["persona"] == null)
+                    Session["persona"] = new Personas();
+
+                persona = (Personas)Session["persona"];
+
                 int id;
                 int.TryParse(PersonaIdtxt.Text, out id);
                 persona.PersonaId = id;
@@ -82,6 +90,7 @@ namespace Tarea4
             }
         }
 
+        
 
         protected void Nombretxt_TextChanged(object sender, EventArgs e)
         {
@@ -96,6 +105,9 @@ namespace Tarea4
         }
         private List<PersonasTelefonos> GuardarLista(PersonasTelefonos telefono)
         {
+            
+            
+
             if (Session["lista"] == null)
             {
                 List<PersonasTelefonos> telefono2 = this.ObtenerNuevaLista();
@@ -107,6 +119,7 @@ namespace Tarea4
                 telefono2.Add(telefono);
                 Session["lista"] = telefono2;
             }
+            
             return (List<PersonasTelefonos>)Session["lista"];
         }
 
@@ -122,12 +135,10 @@ namespace Tarea4
                 return (List<PersonasTelefonos>)Session["lista"];
         }
         
-        protected void TelefonoGv_RowCommand(object sender, GridViewCommandEventArgs e)
+        public void TelefonoGv_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName.Equals("AddNew")) {
-                TextBox Telefonotxt = (TextBox)TelefonoGv.FooterRow.FindControl("Telefonotxt");
-                DropDownList TipoTelefonoDDL = (DropDownList)TelefonoGv.FooterRow.FindControl("TipoTelefonoDDL");
-
+                
                 PersonasTelefonos telefono = new PersonasTelefonos();
                 
                 telefono.Telefono = Telefonotxt.Text;
@@ -148,11 +159,26 @@ namespace Tarea4
 
         protected void BuscarBtn_Click(object sender, EventArgs e)
         {
+            Personas persona;
+            if (Session["persona"] == null)
+                Session["persona"] = new Personas();
+            persona = (Personas)Session["persona"];
+           
             int id;
             int.TryParse(PersonaIdtxt.Text, out id);
             persona.Buscar(id);
+            Session["persona"] = persona;
             Nombretxt.Text = persona.Nombres;
             SexoDDw.Text = persona.Sexo;
+
+            
+            foreach (PersonasTelefonos p in persona.telefono)
+            {
+
+                this.GuardarLista(p);
+            }
+            this.TelefonoGv.DataSource = this.ObtenerLista();
+            this.TelefonoGv.DataBind();
 
 
         }
@@ -164,6 +190,7 @@ namespace Tarea4
 
         protected void EliminarBtn_Click(object sender, EventArgs e)
         {
+            Personas persona = new Personas(); 
             int id;
             int.TryParse(PersonaIdtxt.Text, out id);
             if (persona.Buscar(id))
@@ -174,6 +201,33 @@ namespace Tarea4
                     Limpiar();
                 }
             }
+        }
+
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            Personas persona;
+
+            if (Session["persona"] == null)
+                Session["persona"] = new Personas();
+
+
+            persona = (Personas)Session["persona"];
+
+            persona.AgregarTelefono(Telefonotxt.Text, TipoTelefonoDDL.Text);
+            Session["persona"]=persona;
+
+            PersonasTelefonos telefono = new PersonasTelefonos();
+
+                telefono.Telefono = Telefonotxt.Text;
+                telefono.TipoTelefono = TipoTelefonoDDL.Text;
+
+                this.GuardarLista(telefono);
+
+                this.TelefonoGv.DataSource = persona.telefono;
+                this.TelefonoGv.DataSource = this.ObtenerLista();
+                this.TelefonoGv.DataBind();
+               
+            
         }
     }
 }
